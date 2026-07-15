@@ -11,12 +11,12 @@ function setDisplay(value) {
     }
 }
 
-/* return current value */
+/* Return current value */
 function getDisplay() {
     return display.value;
 }
 
-/* Remove last number */
+/* Remove last digit */
 function removeDigit(currentNumber) {
     const result = currentNumber.slice(0, -1);
     return result === "" || result === "-" ? "0" : result;
@@ -25,7 +25,6 @@ function removeDigit(currentNumber) {
 /* Max length allowed: 10 digits */
 function validateDisplay(currentNumber) {
     if (currentNumber.length > 10) {
-        alert("The number is too long. Please enter a shorter number.");
         return currentNumber.slice(0, 10);
     }
     return currentNumber;
@@ -46,9 +45,9 @@ function operate(op, a, b) {
         case "*":
             return a * b;
         case "/":
-            /*When second number is 0 throw an alert*/
-            if (b === 0) {
-                alert("This operation is not allowed.");
+            /*When the second number is 0 throw an alert*/
+            if (b === 0){
+                alert ("Cannot divide by zero.")
                 return 0;
             }
             return a / b;
@@ -79,7 +78,7 @@ function handleOperator(op) {
         waitingSecondNumber = true;
         return;
     }
-    // Validates if there is an operation to do, then calculate the result 
+    // Validates if there is an operation to do, then calculates the result 
     if (operator && waitingSecondNumber === false) {
         const result = operate(operator, firstNumber, currentValue);
         setDisplay(result.toString());
@@ -122,16 +121,21 @@ function handleFunction(buttonValue) {
 
 /*User can use dot function one time*/
 function handleDot() {
+    if (waitingSecondNumber) {
+        setDisplay("0.");
+        waitingSecondNumber = false;
+        return;
+    }
     const current = getDisplay();
     if (!current.includes(".")) {
         setDisplay(current + ".");
     }
 }
 
-/*Handles inputs events from user, it knows wheter if 
-*it's the first time user adds information
-* or if the second number is "0" or an input value
-*/
+/* Handles input events from the user. It knows whether 
+ * it's the first time the user adds information
+ * or if the second number is "0" or an input value.
+ */
 function handleNumber(buttonValue) {
     if (waitingSecondNumber) {
         setDisplay(buttonValue);
@@ -143,9 +147,7 @@ function handleNumber(buttonValue) {
     }
 }
 
-/* Identifies by listening what class of buttons it is, such as:
-* "number", "function", "equal", etc.
-*/
+/* Listens to button clicks and identifies their type (number, operator, etc.) */
 document.querySelectorAll(".buttons button").forEach((button) => {
     button.addEventListener("click", () => {
         const buttonValue = button.textContent.trim();
