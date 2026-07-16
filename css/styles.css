@@ -1,79 +1,111 @@
-:root{
-    font-family: serif;
+:root {
+    /* Main font */
+    --font-main: serif;
+
+    /* Colors */
+    --color-white: rgb(255, 255, 255);
+    --color-black: rgb(0, 0, 0);
+    --bg-body-start: rgba(198, 198, 198, 0.846);
+    --bg-header-start: rgba(0, 47, 176, 0.846);
+    --bg-header-end: rgb(22, 138, 232);
+    --bg-description: rgb(0, 19, 163);
+    --bg-calculator: rgb(200, 200, 200);
+    
+    /* Buttons colors */
+    --btn-hover: rgb(200, 200, 200);
+    --btn-op: rgb(28, 176, 230);
+    --btn-op-hover: rgb(0, 125, 200);
+    --btn-equal: rgb(255, 125, 25);
+    --btn-equal-hover: rgb(198, 79, 0);
+
+    /* Shadows and borders */
+    --shadow-main: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+    --shadow-btn: rgba(0, 0, 0, 0.5) 0px 3px 5px;
+    --shadow-calc: rgba(86, 83, 83, 0.5) 0px 2px 5px;
+    --border-radius: 10px;
 }
-body{
+
+/* --- Resets --- */
+body, .header, h1, .description, h2 {
     margin: 0;
     padding: 0;
-    font: var(--font-family);
-    background: linear-gradient(180deg, rgba(198, 198, 198, 0.846) 0%, rgb(255, 255, 255) 100%);
+}
+/* --- A simple background style with gradient --- */
+body {
+    font-family: var(--font-main);
+    background: linear-gradient(180deg, var(--bg-body-start) 0%, var(--color-white) 100%);
     min-height: 100vh;
-    color: rgb(0, 0, 0);
+    color: var(--color-black);
 }
-.header{
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(120deg, rgba(0, 47, 176, 0.846) 0%, rgb(22, 138, 232) 100%);
+
+.header {
+    background: linear-gradient(120deg, var(--bg-header-start) 0%, var(--bg-header-end) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+    color: var(--color-white);
+    box-shadow: var(--shadow-main);
 }
-h1{
-    color: white;
-    margin: 0;
+
+/* --- Header Calculator --- */
+h1 {
+    color: var(--color-white);
     padding: 40px 0;
     font-size: 45px;
-    text-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+    text-shadow: var(--shadow-main);
 }
-.description{
-    color: white;
-    background: rgb(0, 19, 163);
-    margin: 0;
-    padding: 0;
-    border-bottom: 1px solid rgb(0, 0, 0);
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
-
-}
-h2{
-    color: white;
+/* --- Description Calculator --- */
+h2 {
+    color: var(--color-white);
     font-size: 15px;
-    margin: 0;
     padding: 5px 0;
     display: flex;
     justify-content: center;
 }
-.calculator{
+
+.description {
+    color: var(--color-white);
+    background: var(--bg-description);
+    border-bottom: 1px solid var(--color-black);
+    box-shadow: var(--shadow-main);
+}
+
+/* --- Calculator Container --- */
+.calculator {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 50px;
 }
-#calculator{
+
+#calculator {
     width: 400px;
     height: 500px;
-    background: rgb(200, 200, 200);
-    box-shadow: rgba(86, 83, 83, 0.5) 0px 2px 5px;
-    border-radius: 10px;
+    background: var(--bg-calculator);
+    box-shadow: var(--shadow-calc);
+    border-radius: var(--border-radius);
     padding: 20px;
     display: flex;
     flex-direction: column;
 }
-.display{
+
+.display {
     width: 100%;
     height: 100px;
-    background: white;
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
-    border-radius: 10px;
+    background: var(--color-white);
+    box-shadow: var(--shadow-main);
+    border-radius: var(--border-radius);
     margin-bottom: 20px;
     display: flex;
-    text-align: right; /* Align text to the right */
-    padding-right: 20px; /* Display must be aligned to the right */
-    box-sizing: border-box; /* Avoid padding affecting the width */
+    text-align: right; /* It aligns the text to the right side of the display */
+    padding-right: 20px; 
+    box-sizing: border-box; 
     font-size: 60px;
 }
-.buttons{
+
+/* --- Buttons Grid with 4 columns and 5 rows --- */
+.buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -83,45 +115,44 @@ h2{
     width: auto;
     height: 500px;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
 }
-.buttons button{
+
+/* --- Button Styles --- */
+.buttons button {
     width: 100%;
     height: 100%;
     font-size: 30px;
     border: none;
-    border-radius: 10px;
-    background: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+    border-radius: var(--border-radius);
+    background: var(--color-white);
+    box-shadow: var(--shadow-main);
     cursor: pointer;
 }
-/*hover effect for buttons*/
-.buttons button:hover{
-    background: rgb(200, 200, 200);
+
+/* --- Button Effect --- */
+.buttons button:hover {
+    background: var(--btn-hover);
 }
+
+/* --- Modifiers for Operator and Function Buttons --- */
 .button-operator,
-.button-function{
-    width: 100%;
-    height: 100%;
-    font-size: 30px;
-    border: none;
-    border-radius: 10px;
-    background: rgb(28, 176, 230)!important;
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 5px;
+.button-function {
+    background: var(--btn-op) !important;
+    box-shadow: var(--shadow-btn);
 }
+/* --- Give more contrast to the operator and function buttons when hovered ---*/
 .button-operator:hover,
-.button-function:hover{
-    background: rgb(0, 125, 200)!important;
+.button-function:hover {
+    background: var(--btn-op-hover) !important;
 }
-.button-equal{
-    width: 100%;
-    height: 100%;
-    font-size: 30px;
-    border: none;
-    border-radius: 10px;
-    background: rgb(255, 125, 25)!important;
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 5px;
+
+/* --- Give more contrast to the equal button when hovered ---*/
+.button-equal {
+    background: var(--btn-equal) !important;
+    box-shadow: var(--shadow-btn);
 }
-.button-equal:hover{
-    background: rgb(198, 79, 0)!important;
+
+.button-equal:hover {
+    background: var(--btn-equal-hover) !important;
 }
